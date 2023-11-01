@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterIndexController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-Route::get('/auth/register', RegisterIndexController::class)->name('auth.register');
+if (Features::enabled(Features::registration())) {
+    Route::get('/auth/register', RegisterIndexController::class)->name('auth.register');
+}
+
 Route::get('/auth/login', LoginIndexController::class)->name('auth.login');

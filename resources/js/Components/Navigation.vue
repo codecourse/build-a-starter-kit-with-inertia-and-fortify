@@ -16,10 +16,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                     </div>
                     <div class="flex justify-between w-full">
                         <div class="hidden sm:flex sm:ml-6 space-x-8">
-                            <Link href="#" class="inline-flex items-center border-b-2 border-transparent hover:border-gray-200 text-sm font-medium text-gray-900">
+                            <Link :href="route('home')" class="inline-flex items-center border-b-2 border-transparent hover:border-gray-200 text-sm font-medium text-gray-900">
                                 Home
                             </Link>
-                            <Link href="#" class="inline-flex items-center border-b-2 border-transparent hover:border-gray-200 text-sm font-medium text-gray-900">
+                            <Link :href="route('dashboard')" class="inline-flex items-center border-b-2 border-transparent hover:border-gray-200 text-sm font-medium text-gray-900">
                                 Dashboard
                             </Link>
                         </div>
@@ -69,12 +69,20 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
         <DisclosurePanel class="sm:hidden">
             <div class="spacey-1 pb-3">
-                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">Home</Link>
-                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">Dashboard</Link>
+                <Link :href="route('home')" class="block py-2 px-8 font-medium text-gray-900">
+                    Home
+                </Link>
+                <Link :href="route('dashboard')" class="block py-2 px-8 font-medium text-gray-900">
+                    Dashboard
+                </Link>
             </div>
             <div class="spacey-1 pb-3">
-                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">Create an account</Link>
-                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">Sign in</Link>
+                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">
+                    Create an account
+                </Link>
+                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">
+                    Sign in
+                </Link>
             </div>
         </DisclosurePanel>
     </Disclosure>

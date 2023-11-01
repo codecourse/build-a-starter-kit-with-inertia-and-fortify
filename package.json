@@ -18,6 +18,7 @@
         "@headlessui/vue": "^1.7.16",
         "@heroicons/vue": "^2.0.18",
         "@inertiajs/vue3": "^1.0.14",
-        "@vitejs/plugin-vue": "^4.4.0"
+        "@vitejs/plugin-vue": "^4.4.0",
+        "ziggy-js": "^1.8.1"
     }
 }

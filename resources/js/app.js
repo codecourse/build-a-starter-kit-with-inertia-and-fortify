@@ -2,6 +2,7 @@ import './bootstrap';
 
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.es'
 
 const appName = import.meta.env.VITE_APP_NAME
 
@@ -14,6 +15,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
         .use(plugin)
+        .use(ZiggyVue, Ziggy)
         .mount(el)
     },
 })

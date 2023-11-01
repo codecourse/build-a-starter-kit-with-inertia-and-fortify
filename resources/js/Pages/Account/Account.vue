@@ -1,4 +1,5 @@
 <script setup>
+import { ref, computed } from 'vue'
 import { Head, useForm, usePage } from '@inertiajs/vue3'
 import Default from '@/Layouts/Default.vue'
 import Account from '@/Layouts/Account.vue'
@@ -17,6 +18,16 @@ const submit = () => {
         preserveScroll: true
     })
 }
+
+const photo = ref(null)
+
+const photoPreview = computed(() => {
+    if (!photo.value) {
+        return
+    }
+
+    return URL.createObjectURL(photo.value)
+})
 </script>
 
 <template>
@@ -40,6 +51,21 @@ const submit = () => {
                     <input type="text" id="name" class="w-full py-2 text-gray-900 border-gray-300 text-sm" v-model="form.name">
                     <div v-if="form.errors.name" class="text-sm text-red-500 mt-2">
                         {{ form.errors.name }}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="photo" class="text-sm font-medium text-gray-900">Profile photo</label>
+                <div class="flex mt-2 items-center space-x-3">
+                    <div>
+                        <img :src="photoPreview" class="w-12 h-12 rounded-full" v-if="photoPreview">
+                        <img :src="$page.props.auth.user.avatar_url" class="w-12 h-12 rounded-full" v-else>
+                    </div>
+                    <div>
+                        <button v-if="photo" type="button" v-on:click="photo = null" class="text-sm font-semibold text-blue-500">Clear</button>
+                        <label for="photo" class="text-sm font-semibold text-blue-500" v-else>Choose new photo</label>
+                        <input type="file" id="photo" class="sr-only" v-on:change="photo = $event.target.files[0]">
                     </div>
                 </div>
             </div>

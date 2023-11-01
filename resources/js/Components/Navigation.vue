@@ -44,7 +44,7 @@ const logout = () => {
                             <span class="font-medium text-gray-900">
                                 {{ $page.props.auth.user.name }}
                             </span>
-                            <img src="https://ui-avatars.com/api/?name=Alex%20Garrett-Smith" class="h-8 w-8 rounded-full">
+                            <img :src="$page.props.auth.user.avatar_url" class="h-8 w-8 rounded-full">
                         </MenuButton>
                         <MenuItems class="absolute right-0 z-10 mt-2 w-48 bg-white border border-b-slate-200 focus:outline-none">
                             <MenuItem v-slot="{ active, close }">

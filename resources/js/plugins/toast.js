@@ -9,7 +9,7 @@ export default () => {
 
         if (body) {
             toast(body, {
-                timeout: 5000
+                timeout: 2000
             })
         }
     })

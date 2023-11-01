@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Account\AccountIndexController;
+use App\Http\Controllers\Account\SecurityIndexController;
 use App\Http\Controllers\Auth\LoginIndexController;
 use App\Http\Controllers\Auth\RegisterIndexController;
 use App\Http\Controllers\DashboardController;
@@ -26,3 +28,5 @@ if (Features::enabled(Features::registration())) {
 }
 
 Route::get('/auth/login', LoginIndexController::class)->name('auth.login');
+Route::get('/account', AccountIndexController::class)->name('account.index');
+Route::get('/account/security', SecurityIndexController::class)->name('account.security.index');

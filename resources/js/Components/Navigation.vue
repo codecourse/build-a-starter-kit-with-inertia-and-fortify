@@ -27,7 +27,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                             <Link :href="route('auth.register')" class="inline-flex items-center border-b-2 border-transparent text-sm font-medium text-gray-900">
                                 Create an account
                             </Link>
-                            <Link href="#" class="inline-flex items-center border-b-2 border-transparent text-sm font-medium text-gray-900">
+                            <Link :href="route('auth.login')" class="inline-flex items-center border-b-2 border-transparent text-sm font-medium text-gray-900">
                                 Sign in
                             </Link>
                         </div>
@@ -82,7 +82,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                 <Link :href="route('auth.register')" class="block py-2 px-8 font-medium text-gray-900">
                     Create an account
                 </Link>
-                <Link href="#" class="block py-2 px-8 font-medium text-gray-900">
+                <Link :href="route('auth.login')" class="block py-2 px-8 font-medium text-gray-900">
                     Sign in
                 </Link>
             </div>

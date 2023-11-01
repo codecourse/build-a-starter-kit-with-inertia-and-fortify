@@ -23,7 +23,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                                 Dashboard
                             </Link>
                         </div>
-                        <div class="hidden sm:flex sm:ml-6 space-x-8">
+                        <div class="hidden sm:flex sm:ml-6 space-x-8" v-if="!$page.props.auth.user">
                             <Link :href="route('auth.register')" class="inline-flex items-center border-b-2 border-transparent text-sm font-medium text-gray-900">
                                 Create an account
                             </Link>
@@ -35,9 +35,11 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                 </div>
 
                 <div class="absolute inset-y-0 right-0 flex items-center space-x-3">
-                    <!-- <Menu as="div" class="relative mr-3">
+                    <Menu as="div" class="relative mr-3" v-if="$page.props.auth.user">
                         <MenuButton class="flex items-center text-sm space-x-3">
-                            <span class="font-medium text-gray-900">Alex</span>
+                            <span class="font-medium text-gray-900">
+                                {{ $page.props.auth.user.name }}
+                            </span>
                             <img src="https://ui-avatars.com/api/?name=Alex%20Garrett-Smith" class="h-8 w-8 rounded-full">
                         </MenuButton>
                         <MenuItems class="absolute right-0 z-10 mt-2 w-48 bg-white border border-b-slate-200 focus:outline-none">
@@ -57,7 +59,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                                 </Link>
                             </MenuItem>
                         </MenuItems>
-                    </Menu> -->
+                    </Menu>
 
                     <DisclosureButton class="sm:hidden relative p-2 text-gray-900 hover:bg-gray-100">
                         <Bars3Icon v-if="!open" class="block h-6 w-6" />
@@ -76,7 +78,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                     Dashboard
                 </Link>
             </div>
-            <div class="spacey-1 pb-3">
+            <div class="spacey-1 pb-3" v-if="!$page.props.auth.user">
                 <Link :href="route('auth.register')" class="block py-2 px-8 font-medium text-gray-900">
                     Create an account
                 </Link>

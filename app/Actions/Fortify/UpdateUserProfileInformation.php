@@ -2,14 +2,21 @@
 
 namespace App\Actions\Fortify;
 
+use App\Actions\Contracts\UpdatesUserProfilePhoto;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
+    public function __construct(protected UpdatesUserProfilePhoto $updateUserProfilePhoto)
+    {
+
+    }
+
     /**
      * Validate and update the given user's profile information.
      *
@@ -20,6 +27,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
 
+            'photo' => File::types(['jpg', 'png'])
+                ->max(5 * 1024),
+
             'email' => [
                 'required',
                 'string',
@@ -28,6 +38,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 Rule::unique('users')->ignore($user->id),
             ],
         ])->validate();
+
+        $this->updateUserProfilePhoto->update($user, $input['photo']);
 
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {

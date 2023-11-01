@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { Head, useForm, usePage } from '@inertiajs/vue3'
 import Default from '@/Layouts/Default.vue'
 import Account from '@/Layouts/Account.vue'
@@ -9,17 +9,23 @@ defineOptions({ layout: [Default, Account] })
 const page = usePage()
 
 const form = useForm({
+    _method: 'PUT',
     email: page.props.auth.user.email,
-    name: page.props.auth.user.name
+    name: page.props.auth.user.name,
+    photo: null
 })
 
 const submit = () => {
-    form.put(route('user-profile-information.update'), {
+    form.post(route('user-profile-information.update'), {
         preserveScroll: true
     })
 }
 
 const photo = ref(null)
+
+watch(photo, (photo) => {
+    form.photo = photo
+})
 
 const photoPreview = computed(() => {
     if (!photo.value) {

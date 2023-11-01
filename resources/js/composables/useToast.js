@@ -22,7 +22,6 @@ export default () => {
 
         timeout = setTimeout(() => {
             active.value = false
-            toastOptions.value.body = ''
         }, toastOptions.value.timeout)
     }
 

@@ -15,7 +15,7 @@ const { body, active, hide } = useToast()
             leave-to="-translate-y-full opacity-0"
         >
             <div class="fixed top-0 left-1/2 -translate-x-1/2 bg-blue-500/90 px-4 py-3 text-white mt-6 z-[100] text-sm">
-                This is a toast message
+                {{ body }}
             </div>
         </TransitionChild>
     </TransitionRoot>

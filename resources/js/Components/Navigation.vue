@@ -1,7 +1,11 @@
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 import { Disclosure, DisclosurePanel, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+
+const logout = () => {
+    router.post(route('logout'))
+}
 </script>
 
 <template>
@@ -54,9 +58,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
                                 </Link>
                             </MenuItem>
                             <MenuItem v-slot="{ active }">
-                                <Link href="#" class="block px-4 py-2 text-sm text-gray-900" :class="{ 'bg-gray-100': active }">
+                                <button v-on:click="logout" class="block px-4 py-2 text-sm text-gray-900 w-full text-left" :class="{ 'bg-gray-100': active }">
                                     Sign out
-                                </Link>
+                                </button>
                             </MenuItem>
                         </MenuItems>
                     </Menu>

@@ -19,6 +19,7 @@
         "@heroicons/vue": "^2.0.18",
         "@inertiajs/vue3": "^1.0.14",
         "@vitejs/plugin-vue": "^4.4.0",
+        "momentum-modal": "^0.2.1",
         "ziggy-js": "^1.8.1"
     }
 }

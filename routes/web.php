@@ -4,6 +4,7 @@ use App\Http\Controllers\Account\AccountIndexController;
 use App\Http\Controllers\Account\SecurityIndexController;
 use App\Http\Controllers\Auth\LoginIndexController;
 use App\Http\Controllers\Auth\RegisterIndexController;
+use App\Http\Controllers\Auth\TwoFactorIndexController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Auth\Middleware\RequirePassword;
@@ -37,6 +38,10 @@ if (Features::enabled(Features::updateProfileInformation())) {
 
 if (Features::hasSecurityFeatures()) {
     Route::get('/account/security', SecurityIndexController::class)->name('account.security.index');
+}
+
+if (Features::enabled(Features::twoFactorAuthentication())) {
+    Route::get('/auth/two-factor', TwoFactorIndexController::class)->name('auth.two-factor');
 }
 
 require __DIR__ . '/fortify.php';

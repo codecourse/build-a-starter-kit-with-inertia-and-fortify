@@ -1,6 +1,9 @@
 <script setup>
 import Modal from '@/Components/Modal.vue'
 import { useForm, Head } from '@inertiajs/vue3'
+import { useModal } from 'momentum-modal'
+
+const { close } = useModal()
 
 const form = useForm({
     password: null
@@ -11,7 +14,7 @@ const form = useForm({
     <Modal class="bg-white max-w-md p-12">
         <h2 class="text-center text-2xl font-bold font-mono text-gray-900">Confirm password</h2>
 
-        <form class="mt-6 space-y-6" v-on:submit.prevent="form.post(route('password.confirm'))">
+        <form class="mt-6 space-y-6" v-on:submit.prevent="form.post(route('password.confirm'), { onSuccess: () => close() })">
             <div>
                 <label for="password" class="text-sm font-medium text-gray-900">Password</label>
                 <div class="mt-2">

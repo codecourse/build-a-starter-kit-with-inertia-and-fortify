@@ -9,6 +9,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Actions\Fortify\UpdateUserProfilePhoto;
 use App\Http\Responses\LoginResponse;
+use App\Http\Responses\PasswordConfirmedResponse;
 use App\Http\Responses\PasswordUpdateResponse;
 use App\Http\Responses\ProfileInformationUpdatedResponse;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -38,6 +39,11 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->singleton(
             \Laravel\Fortify\Contracts\PasswordUpdateResponse::class,
             PasswordUpdateResponse::class
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\PasswordConfirmedResponse::class,
+            PasswordConfirmedResponse::class
         );
 
         $this->app->singleton(

@@ -19,6 +19,10 @@ const recoveryCodes = ref([])
 const fetchRecoveryCodes = () => {
     axios.get(route('two-factor.recovery-codes')).then((response) => {
         recoveryCodes.value = response.data
+    }).catch((e) => {
+        if (e.response.status === 423) {
+            router.get(route('password.confirm'))
+        }
     })
 }
 </script>

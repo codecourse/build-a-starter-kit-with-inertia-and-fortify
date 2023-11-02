@@ -3,13 +3,16 @@
 use App\Http\Controllers\Account\AccountIndexController;
 use App\Http\Controllers\Account\SecurityIndexController;
 use App\Http\Controllers\Auth\LoginIndexController;
+use App\Http\Controllers\Auth\RecoverIndexController;
 use App\Http\Controllers\Auth\RegisterIndexController;
+use App\Http\Controllers\Auth\ResetIndexController;
 use App\Http\Controllers\Auth\TwoFactorIndexController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+use Symfony\Contracts\Service\ResetInterface;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +45,11 @@ if (Features::hasSecurityFeatures()) {
 
 if (Features::enabled(Features::twoFactorAuthentication())) {
     Route::get('/auth/two-factor', TwoFactorIndexController::class)->name('auth.two-factor');
+}
+
+if (Features::enabled(Features::resetPasswords())) {
+    Route::get('/auth/recover', RecoverIndexController::class)->name('auth.recover');
+    Route::get('/auth/reset', ResetIndexController::class)->name('password.reset');
 }
 
 require __DIR__ . '/fortify.php';

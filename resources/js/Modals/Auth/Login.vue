@@ -1,6 +1,6 @@
 <script setup>
 import Modal from '@/Components/Modal.vue'
-import { useForm, Head } from '@inertiajs/vue3'
+import { useForm, Head, Link } from '@inertiajs/vue3'
 
 const form = useForm({
     email: '',
@@ -37,8 +37,8 @@ const form = useForm({
                     <input type="checkbox" id="remember" class="h-4 w-4 text-blue-500 focus:ring-blue-500" v-model="form.remember">
                     <label for="remember" class="ml-2 block text-sm text-gray-900">Remember me</label>
                 </div>
-                <div>
-                    <!-- Forgot password -->
+                <div v-if="$page.props.features['reset-passwords']">
+                    <Link :href="route('auth.recover')" class="text-sm text-blue-500 font-semibold">Forgot password</Link>
                 </div>
             </div>
 

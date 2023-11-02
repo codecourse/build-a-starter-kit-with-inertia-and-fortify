@@ -76,5 +76,10 @@ class FortifyServiceProvider extends ServiceProvider
             return inertia()->modal('Auth/ConfirmPassword')
                 ->baseRoute('home');
         });
+
+        Fortify::twoFactorChallengeView(function () {
+            return inertia()->modal('Auth/TwoFactorChallenge')
+                ->baseRoute('home');
+        });
     }
 }

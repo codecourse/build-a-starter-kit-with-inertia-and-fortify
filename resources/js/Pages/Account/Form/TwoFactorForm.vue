@@ -3,9 +3,11 @@ import { router } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
 const enable = () => {
-    router.post(route('two-factor.enable'), {}, {
-        onSuccess: () => {
-            router.get(route('auth.two-factor'))
+    axios.post(route('two-factor.enable')).then(() => {
+        router.get(route('auth.two-factor'))
+    }).catch((e) => {
+        if (e.response.status === 423) {
+            router.get(route('password.confirm'))
         }
     })
 }

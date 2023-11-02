@@ -44,7 +44,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user() ? UserResource::make($request->user()) : null
             ],
-            'features' => collect(config('fortify.features'))->mapWithKeys(fn ($key) => [$key => true]),
+            'features' => collect(config('fortify.features'))->mapWithKeys(fn ($key) => [$key => true])->merge([
+                'security' => Features::hasSecurityFeatures(),
+            ]),
             'toast' => session('toast'),
             'ziggy' => [
                 'route_name' => Route::currentRouteName()

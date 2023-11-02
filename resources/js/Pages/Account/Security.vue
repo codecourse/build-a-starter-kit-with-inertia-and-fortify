@@ -9,9 +9,9 @@ defineOptions({ layout: [Default, Account] })
 
 <template>
     <div class="space-y-12">
-        <ChangePasswordForm />
+        <ChangePasswordForm v-if="$page.props.features['update-passwords']" />
 
-        <div>
+        <div v-if="$page.props.features['two-factor-authentication']">
             two factor
         </div>
     </div>

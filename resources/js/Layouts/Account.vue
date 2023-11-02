@@ -13,7 +13,7 @@ import { Link } from '@inertiajs/vue3'
                                 Profile information
                             </Link>
                         </li>
-                        <li>
+                        <li v-if="$page.props.features.security">
                             <Link :href="route('account.security.index')" class="text-gray-900 flex p-2 pl-3 text-sm font-semibold" :class="{ 'bg-gray-100': $page.props.ziggy.route_name === 'account.security.index' }">
                                 Security
                             </Link>

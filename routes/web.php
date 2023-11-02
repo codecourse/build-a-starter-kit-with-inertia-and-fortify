@@ -28,5 +28,11 @@ if (Features::enabled(Features::registration())) {
 }
 
 Route::get('/auth/login', LoginIndexController::class)->name('auth.login');
-Route::get('/account', AccountIndexController::class)->name('account.index');
-Route::get('/account/security', SecurityIndexController::class)->name('account.security.index');
+
+if (Features::enabled(Features::updateProfileInformation())) {
+    Route::get('/account', AccountIndexController::class)->name('account.index');
+}
+
+if (Features::hasSecurityFeatures()) {
+    Route::get('/account/security', SecurityIndexController::class)->name('account.security.index');
+}

@@ -47,12 +47,12 @@ const logout = () => {
                             <img :src="$page.props.auth.user.avatar_url" class="h-8 w-8 rounded-full">
                         </MenuButton>
                         <MenuItems class="absolute right-0 z-10 mt-2 w-48 bg-white border border-b-slate-200 focus:outline-none">
-                            <MenuItem v-slot="{ active, close }">
+                            <MenuItem v-slot="{ active, close }" v-if="$page.props.features['update-profile-information']">
                                 <Link :href="route('account.index')" class="block px-4 py-2 text-sm text-gray-900" :class="{ 'bg-gray-100': active }">
                                     Account
                                 </Link>
                             </MenuItem>
-                            <MenuItem v-slot="{ active, close }">
+                            <MenuItem v-slot="{ active, close }" v-if="$page.props.features.security">
                                 <Link :href="route('account.security.index')" class="block px-4 py-2 text-sm text-gray-900" :class="{ 'bg-gray-100': active }">
                                     Security
                                 </Link>

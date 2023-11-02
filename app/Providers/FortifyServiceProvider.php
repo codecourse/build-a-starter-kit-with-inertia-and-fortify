@@ -8,6 +8,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Actions\Fortify\UpdateUserProfilePhoto;
+use App\Http\Responses\EmailVerificationNotificationSentResponse;
 use App\Http\Responses\LoginResponse;
 use App\Http\Responses\PasswordConfirmedResponse;
 use App\Http\Responses\PasswordUpdateResponse;
@@ -44,6 +45,11 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->singleton(
             \Laravel\Fortify\Contracts\PasswordConfirmedResponse::class,
             PasswordConfirmedResponse::class
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse::class,
+            EmailVerificationNotificationSentResponse::class
         );
 
         $this->app->singleton(

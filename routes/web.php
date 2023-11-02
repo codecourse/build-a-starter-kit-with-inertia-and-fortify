@@ -23,7 +23,7 @@ use Laravel\Fortify\Features;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('verified');
 // ->middleware(RequirePassword::using(null, 1));
 
 if (Features::enabled(Features::registration())) {

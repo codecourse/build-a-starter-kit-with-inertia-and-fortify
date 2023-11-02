@@ -72,6 +72,11 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
+        Fortify::verifyEmailView(function () {
+            return inertia()->modal('Auth/VerifyEmail')
+                ->baseRoute('home');
+        });
+
         Fortify::confirmPasswordView(function () {
             return inertia()->modal('Auth/ConfirmPassword')
                 ->baseRoute('home');

@@ -11,9 +11,11 @@ use App\Actions\Fortify\UpdateUserProfilePhoto;
 use App\Http\Responses\EmailVerificationNotificationSentResponse;
 use App\Http\Responses\LoginResponse;
 use App\Http\Responses\PasswordConfirmedResponse;
+use App\Http\Responses\PasswordResetResponse;
 use App\Http\Responses\PasswordUpdateResponse;
 use App\Http\Responses\ProfileInformationUpdatedResponse;
 use App\Http\Responses\SuccessfulPasswordResetLinkRequestResponse;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -56,6 +58,11 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->singleton(
             \Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse::class,
             SuccessfulPasswordResetLinkRequestResponse::class
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\PasswordResetResponse::class,
+            PasswordResetResponse::class
         );
 
         $this->app->singleton(

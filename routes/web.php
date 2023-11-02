@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginIndexController;
 use App\Http\Controllers\Auth\RegisterIndexController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -21,7 +22,8 @@ use Laravel\Fortify\Features;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('password.confirm');
+Route::get('/dashboard', DashboardController::class)->name('dashboard');
+// ->middleware(RequirePassword::using(null, 1));
 
 if (Features::enabled(Features::registration())) {
     Route::get('/auth/register', RegisterIndexController::class)->name('auth.register');

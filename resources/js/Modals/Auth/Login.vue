@@ -26,7 +26,16 @@ const form = useForm({
                 <label for="password" class="text-sm font-medium text-gray-900">Password</label>
                 <div class="mt-2">
                     <input type="password" id="password" class="w-full py-2 text-gray-900 border-gray-300 text-sm" v-model="form.password">
-                    <div v-if="form.errors.name" class="text-sm text-red-500 mt-2">
+                    <div v-if="form.errors.password" class="text-sm text-red-500 mt-2">
+                        {{ form.errors.password }}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="password" class="text-sm font-medium text-gray-900">Password</label>
+                <div class="mt-2">
+                    <input type="password" id="password" class="w-full py-2 text-gray-900 border-gray-300 text-sm" v-model="form.password">
+                    <div v-if="form.errors.password" class="text-sm text-red-500 mt-2">
                         {{ form.errors.password }}
                     </div>
                 </div>

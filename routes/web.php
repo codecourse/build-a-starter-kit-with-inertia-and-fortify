@@ -21,7 +21,7 @@ use Laravel\Fortify\Features;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('password.confirm');
 
 if (Features::enabled(Features::registration())) {
     Route::get('/auth/register', RegisterIndexController::class)->name('auth.register');
@@ -36,3 +36,5 @@ if (Features::enabled(Features::updateProfileInformation())) {
 if (Features::hasSecurityFeatures()) {
     Route::get('/account/security', SecurityIndexController::class)->name('account.security.index');
 }
+
+require __DIR__ . '/fortify.php';
